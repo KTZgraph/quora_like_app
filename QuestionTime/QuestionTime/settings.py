@@ -129,7 +129,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-# redirections
+# redirections; SPA
 LOGIN_URL = "accounts/login/" # login url
 LOGIN_REDIRECT_URL = "/" # after login
 LOGOUT_REDIRECT_URL = "/" #after logout
@@ -158,5 +158,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
     )
 }
