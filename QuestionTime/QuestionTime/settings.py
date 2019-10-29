@@ -51,7 +51,8 @@ INSTALLED_APPS = [
 
     'crispy_forms', #do łatwego tworzenia formularzy
 
-    'users'
+    'users', # 
+    'questions' # basically the main application
 ]
 
 MIDDLEWARE = [
