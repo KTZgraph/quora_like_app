@@ -1,0 +1,43 @@
+"rest-client.environmentVariables": {
+    "local": {
+        "baseUrl": "127.0.0.1:8000",
+        "token": "Token 9d552ebc6ad4aa4e6f6876284995fc6315ba070f"
+    }
+}
+
+
+###
+#create new account
+POST http://127.0.0.1:8000/api/rest-auth/registration/ HTTP/1.1
+content-type: application/json
+# TODO: add token for test
+{
+	"username": "resttest3",
+	"email": "resttest2@test.com",
+	"password1": "changeme123",
+	"password2": "changeme123"
+}
+
+###
+# get all questions
+GET http://127.0.0.1:8000/api/questions/ HTTP/1.1
+
+
+###
+# login resttest2 user
+GET http://127.0.0.1:8000/api/user/ HTTP/1.1
+# TODO: add token for test
+content-type: application/json
+{
+    "username": "resttest"
+}
+
+
+###
+# answer the question
+POST http://127.0.0.1:8000/api/questions/first-question-does-it-work-375w91/answer/
+# TODO: add token for test
+content-type: application/json
+{
+	"body": "first answer, via REST!"
+}

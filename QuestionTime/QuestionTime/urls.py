@@ -57,7 +57,7 @@ urlpatterns = [
         include("rest_auth.urls")),
 
     # registration endpoint to use via rest
-    path("api/rest-auth/registration",
+    path("api/rest-auth/registration/",
         include("rest_auth.registration.urls")),
 
     re_path(r"^.*$", IndexTemplateView.as_view(), name="entry-point")
