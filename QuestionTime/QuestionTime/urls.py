@@ -44,6 +44,9 @@ urlpatterns = [
     
     path("api/",
         include("users.api.urls")),
+    
+    path("api/",
+        include("questions.api.urls")),
 
     # login url for the browser API
     path("api-auth/",
