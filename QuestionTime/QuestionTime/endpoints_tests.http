@@ -41,3 +41,10 @@ content-type: application/json
 {
 	"body": "first answer, via REST!"
 }
+
+
+###
+http://127.0.0.1:8000/accounts/login/
+
+###
+http://127.0.0.1:8000/accounts/register
