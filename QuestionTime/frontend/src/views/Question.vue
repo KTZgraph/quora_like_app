@@ -26,11 +26,15 @@ export default {
         }
     },
     methods:{
+        setPageTitle(title){
+            document.title = title;
+        },
         getQuestionData(){
             let endpoint = `/api/questions/${this.slug}/`; // `slug` is a prop, always remember about `/` at the end!
             apiService(endpoint)
                 .then(data => {
                     this.question = data; //data property
+                    this.setPageTitle(data.content);
                 })
         }
     },

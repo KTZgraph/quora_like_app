@@ -40,6 +40,7 @@ export default {
   },
   created(){ //lifecycle hooks
     this.getQuestions()
+    document.title = "QuestionTime";
   }
 };
 </script>
