@@ -9,7 +9,7 @@
             <router-link :to="{ name: 'home' }" class="btn btn-sm btn-success">Home</router-link>
           </li>
           <li class="nav-item mx-1">
-            <router-link :to="{ name: 'about' }" class="btn btn-sm btn-danger">About</router-link>
+            <router-link :to="{ name: 'home' }" class="btn btn-sm btn-danger">Add Question</router-link>
           </li>
           <li class="nav-item">
             <!-- link to builded in django urls for logout -->
