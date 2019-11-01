@@ -38,10 +38,13 @@
 
     <div class="container">
       	<!-- answer is a prop from Answer.vue -->
+        <!-- delete-answer parameter for Answer component -->
 		<AnswerComponent 
 			v-for="(answer, index) in answers" 
 			:answer="answer" 
+      :requestUser="requestUser"
 			:key="index" 
+      @delete-answer="deleteAnswer"
 		/>
 
 		<div class="my-4">
@@ -78,14 +81,19 @@ export default {
       newAnswerBody: null,
       error: null,
       userHasAnswered: false,
-	  showForm: false,
-	  next: null,
-	  loadingAnswers: false
+	    showForm: false,
+	    next: null,
+      loadingAnswers: false,
+      requestUser: null
     };
   },
   methods: {
     setPageTitle(title) {
       document.title = title;
+    },
+    setRequestUser(){
+      // data for logged user
+      this.requestUser = window.localStorage.getItem("username"); //data form loac storage
     },
     getQuestionData() {
       let endpoint = `/api/questions/${this.slug}/`; // `slug` is a prop, always remember about `/` at the end!
@@ -128,12 +136,25 @@ export default {
       } else {
         this.error = "You can't send an empty answer!";
       }
+    },
+    async deleteAnswer(answer){
+      let endpoint = `/api/answers/${answer.id}/`;
+      try{
+        await apiService(endpoint, "DELETE");
+        //delete element from local array
+        this.$delete(this.answers, this.answers.indexOf(answer));
+        this.userHasAnswered = false;
+      }
+      catch(err){
+        console.log(err);
+      }
     }
   },
   created() {
     //lifecycle hooks
     this.getQuestionData();
     this.getQuestionAnswers();
+    this.setRequestUser();
   }
 };
 </script>
