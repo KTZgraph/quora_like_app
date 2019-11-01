@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { apiService } from "../common/api.service.js" //function instead axios
+import { apiService } from "@/common/api.service.js" //function instead axios
 export default {
     name: "QuestionEditor",
     data(){
