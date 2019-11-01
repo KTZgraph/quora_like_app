@@ -9,7 +9,8 @@
             <router-link :to="{ name: 'home' }" class="btn btn-sm btn-success">Home</router-link>
           </li>
           <li class="nav-item mx-1">
-            <router-link :to="{ name: 'home' }" class="btn btn-sm btn-danger">Add Question</router-link>
+            <!-- name `question-editor` is frout vue router endpoints -->
+            <router-link :to="{ name: 'question-editor' }" class="btn btn-sm btn-danger">Ask Question</router-link>
           </li>
           <li class="nav-item">
             <!-- link to builded in django urls for logout -->

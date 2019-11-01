@@ -11,6 +11,7 @@ async function getJSON(response){
 
 
 function apiService(endpoint, method, data) {
+  // D.R.Y. code to make HTTP requests to the REST API backend using fetch
   const config = {
     method: method || "GET", // default method is `GET`, useful when making a lot of requests
     body: data !== undefined ? JSON.stringify(data) : null,
@@ -20,8 +21,8 @@ function apiService(endpoint, method, data) {
     }
   };
   return fetch(endpoint, config)
-            .then(getJSON)
-            .catch(error => console.log(error))
+           .then(getJSON)
+           .catch(error => Console.log(error))
 }
 
 export { apiService }; //now can make request in any place in code

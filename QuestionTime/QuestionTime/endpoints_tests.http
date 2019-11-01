@@ -48,3 +48,7 @@ http://127.0.0.1:8000/accounts/login/
 
 ###
 http://127.0.0.1:8000/accounts/register
+
+###
+# ask new question
+POST http://127.0.0.1:8000/ask
