@@ -20,7 +20,7 @@ const routes = [
     props: true
   },
   {
-    path: "/ask", //`slug` is a parameter
+    path: "/ask/:slug?", // ? - optional parameter - url is used to create new question (without slug yet) and to edit question in QuestionActions Edit button
     name: "question-editor",
     component: QuestionEditor,
     props: true

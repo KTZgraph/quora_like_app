@@ -22,6 +22,12 @@
 import { apiService } from "@/common/api.service.js" //function instead axios
 export default {
     name: "QuestionEditor",
+    props: {
+        slug: {
+            type: String,
+            required: false //optional paramtr for router path: "/ask/:slug?"
+        }
+    },
     data(){
         return{
             question_body: null,
@@ -38,6 +44,10 @@ export default {
             }else{
                 let endpoint = "/api/questions/";
                 let method = "POST";
+                if(this.slug !== undefined){//if  `slug` proper was passed
+                    endpoint += `${ this.slug }/`;
+                    method = "PUT";
+                }
                 apiService(endpoint, method, { content: this.question_body })
                     .then(question_data => { //after retived data
                         this.$router.push({ //redirection to path with specyfied question
@@ -48,6 +58,17 @@ export default {
                 
             }
         }
+    },
+    async beforeRouteEnter(to, from, next){
+        if (to.params.slug !== undefined){
+            let endpoint = `/api/questions/${to.params.slug}/`;
+            let data = await apiService(endpoint);
+            return next(vm => (vm.question_body = data.content));
+        }else{
+            // if not `slug` passed
+            return next();
+        }
+
     },
     created(){
         document.title = "Editor - QuestionTime";
