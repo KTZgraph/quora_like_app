@@ -1,6 +1,6 @@
 <template>
   <div class="single-question mt-2">
-    <div class="container">
+    <div v-if="question" class="container">
       <h1>{{ question.content }}</h1>
       <QuestionActions 
         v-if="isQuestionAuthor"
@@ -39,8 +39,10 @@
       </div>
       <hr />
     </div>
-
-    <div class="container">
+    <div v-else>
+      <h1 class="error text-center">404 - Question Not Found</h1>
+    </div>
+    <div v-if="question" class="container">
       	<!-- answer is a prop from Answer.vue -->
         <!-- delete-answer parameter for Answer component -->
 		<AnswerComponent 
@@ -110,9 +112,14 @@ export default {
     getQuestionData() {
       let endpoint = `/api/questions/${this.slug}/`; // `slug` is a prop, always remember about `/` at the end!
       apiService(endpoint).then(data => {
-        this.question = data; //data property
-        this.userHasAnswered = data.user_has_answered;
-        this.setPageTitle(data.content);
+        if (data){
+          this.question = data; //data property
+          this.userHasAnswered = data.user_has_answered;
+          this.setPageTitle(data.content);
+        }else{
+          this.question = null;
+          this.setPageTitle("404 - Page Not Found");
+        }
       });
     },
     getQuestionAnswers() {
