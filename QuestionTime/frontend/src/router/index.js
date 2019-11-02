@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import AnswerEditor from '../views/AnswerEditor.vue'
 import Home from "../views/Home.vue";
 import Question from "../views/Question.vue";
 import QuestionEditor from "../views/QuestionEditor.vue";
-
 
 Vue.use(VueRouter);
 
@@ -23,6 +23,12 @@ const routes = [
     path: "/ask", //`slug` is a parameter
     name: "question-editor",
     component: QuestionEditor,
+    props: true
+  },
+  {
+    path: "/answer/:id", //`slug` is a parameter
+    name: "answer-editor",
+    component: AnswerEditor,
     props: true
   }
 ];

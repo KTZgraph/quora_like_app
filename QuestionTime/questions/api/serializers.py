@@ -6,6 +6,7 @@ class AnswerSerializer(serializers.ModelSerializer):
     created_at = serializers.SerializerMethodField()
     likes_count = serializers.SerializerMethodField()
     user_has_voted = serializers.SerializerMethodField()
+    question_slug = serializers.SerializerMethodField() # for AnswerEditor.vue
 
     class Meta:
         model = Answer
@@ -21,6 +22,8 @@ class AnswerSerializer(serializers.ModelSerializer):
         request = self.context.get("request")
         return instance.voters.filter(pk=request.user.pk).exists()
 
+    def get_question_slug(self, instance):
+        return instance.question.slug # for AnswerEditor.vue
 
 class QuestionSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)

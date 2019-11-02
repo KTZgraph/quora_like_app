@@ -5,10 +5,14 @@
         </p>
         <p>{{ answer.body }}</p>
         <div v-if="isAnswerAuthor">
-            <button
+            <!-- redirect to component AnswerEditor which provides answering -->
+            <router-link
+                :to="{ name: 'answer-editor', params: { id: answer.id } }"
                 class="btn btn-sm btn-outline-secondary mr-1"
                 >Edit
-            </button>
+            </router-link>
+            <!-- as soon as a button `Edit` i pressed we are using router link to redirect the user to the answer-editor path 
+            and this path is using AnswerEditor component-->
             <button
                 class="btn btn-sm btn-outline-danger"
                 @click="trigerDeleteAnswer"
