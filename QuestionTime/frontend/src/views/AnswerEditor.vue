@@ -27,19 +27,12 @@ export default {
         id : {
             type: Number,
             required: true
-        },
-        previousAnswer: {
-            type: String,
-            required: true
-        },
-        questionSlug:{
-            type: String,
-            required: true
         }
     },
     data(){
         return {
-            answerBody: this.previousAnswer,
+            questionSlug: null, //beter way than having it in `props`
+            answerBody: null, // more elegant than this.previousAnswer,
             error: null
         }
     },
@@ -66,9 +59,13 @@ export default {
         let endpoint = `/api/answers/${to.params.id}/`; //details from the answers
         let data = await apiService(endpoint);
         // function is executed before route, but we hae to pass data answer to the component itself => change serializer in django
-        to.params.previousAnswer = data.body;
-        to.params.questionSlug = data.question_slug; //.question_slug param from django object
-        return next();
+        // to.params.previousAnswer = data.body;
+        // to.params.questionSlug = data.question_slug; //.question_slug param from django object
+        return next(vm => (
+            // insted of using `props` we use `data` - better way
+            vm.answerBody = data.body,
+            vm.questionSlug = data.question_slug
+        )); //vm is a app of Vue isntance
     }
 
 }
