@@ -141,6 +141,14 @@ LOGOUT_REDIRECT_URL = "/" #after logout
 
 STATIC_URL = '/static/'
 
+# for production compiled vue js front
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "assets"), # in case you want to customize app
+    os.path.join(BASE_DIR, "frontend/dist"), # files created after `npm run build` for production
+]
+
+# STATIC_ROOT = "" #the absolute path to the directory where collectstatic will collect staic files for deployment
+
 # custom user model
 AUTH_USER_MODEL = "users.CustomUser"
 

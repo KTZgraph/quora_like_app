@@ -6,7 +6,6 @@ import NotFound from "../views/NotFound.vue";
 import Question from "../views/Question.vue";
 import QuestionEditor from "../views/QuestionEditor.vue";
 
-
 Vue.use(VueRouter);
 
 const routes = [
