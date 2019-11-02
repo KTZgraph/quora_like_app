@@ -44,10 +44,10 @@
       	<!-- answer is a prop from Answer.vue -->
         <!-- delete-answer parameter for Answer component -->
 		<AnswerComponent 
-			v-for="(answer, index) in answers" 
-			:answer="answer" 
+			v-for="answer in answers" 
+			:answer="answer"
       :requestUser="requestUser"
-			:key="index" 
+			:key="answer.id" 
       @delete-answer="deleteAnswer"
 		/>
 
